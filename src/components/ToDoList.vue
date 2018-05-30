@@ -59,9 +59,7 @@ export default {
     }
   },
   created () {},
-  mounted () {
-    console.log(this.list)
-  },
+  mounted () {},
   computed: {
     currentList: function () {
       if (this.filter === 0) {
@@ -89,17 +87,16 @@ export default {
       this.list[i].isEdit = false
     },
     filterAll () {
-      this.filter = 0
+      return this.filter = 0
     },
     filterActive () {
-      this.filter = 1
+      return this.filter = 1
     },
     filterCompleted () {
-      this.filter = 2
+      return this.filter = 2
     },
     delCompleted () {
-      let delList = this.list.findIndex(ele => ele.checked === true)
-      console.log(delList)
+      // let delList = this.list.findIndex(ele => ele.checked === true)s
     },
     del (i) {
       this.list.splice(i, 1)

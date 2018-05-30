@@ -52,17 +52,123 @@ describe('ToDoList.vue', () => {
     expect(vm.$el).toMatchSnapshot()
   })
   describe('Event', () => {
-    it('call del when click del btn', () => {
+    it('新增資料', () => {
         const stub = jest.fn()
-        wrapper.setMethods({ del: stub })
-        // let el = wrapper.find('.view').element
-        expect(wrapper.contains('.view')).toBe(true)
-        // expect(wrapper.find('.view')).toBe(true)
+        wrapper.setData({newContent:'ddd'})
+        wrapper.vm.add()
 
-        // wrapper.find('.view')[0].simulate('mouseEnter')
-  
-        // const el = wrapper.find('.destory')[0].trigger('click')
-        // expect(stub).toBeCalled()
+        expect(vm.list)
+        .toEqual([
+                {
+                    checked: true,
+                    isEdit: false,
+                    content: 'aaa'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'bbb'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ccc'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ddd'
+                },
+            ])
+        })
+
+    it('雙擊第一筆', () => {
+        const stub = jest.fn()
+        wrapper.vm.edit(0)
+
+        expect(vm.list)
+        .toEqual([
+                {
+                    checked: true,
+                    isEdit: true,
+                    content: 'aaa'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'bbb'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ccc'
+                },
+            ])
+        })
+
+    it('關閉編輯第一筆', () => {
+        const stub = jest.fn()
+        wrapper.vm.endEdit(0)
+
+        expect(vm.list)
+        .toEqual([
+                {
+                    checked: true,
+                    isEdit: false,
+                    content: 'aaa'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'bbb'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ccc'
+                },
+            ])
+        })
+
+    it('刪除第一筆', () => {
+        const stub = jest.fn()
+        wrapper.vm.del(0)
+
+        expect(vm.list)
+        .toEqual([
+              {
+                  checked: false,
+                  isEdit: false,
+                  content: 'bbb'
+              },
+              {
+                  checked: false,
+                  isEdit: false,
+                  content: 'ccc'
+              },
+          ])
       })
+
+      it('點擊顯示所有', () => {
+        const stub = jest.fn()
+        wrapper.vm.filterAll()
+
+        expect(vm.filter)
+        .toEqual(0)
+      })
+      it('點擊顯示未完成', () => {
+        const stub = jest.fn()
+        wrapper.vm.filterActive()
+
+        expect(vm.filter)
+        .toEqual(1)
+      })  
+      it('點擊顯示已完成', () => {
+        const stub = jest.fn()
+        wrapper.vm.filterCompleted()
+
+        expect(vm.filter)
+        .toEqual(2)
+      })  
   })
 })
