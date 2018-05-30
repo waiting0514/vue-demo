@@ -87,16 +87,22 @@ export default {
       this.list[i].isEdit = false
     },
     filterAll () {
-      return this.filter = 0
+      this.filter = 0
     },
     filterActive () {
-      return this.filter = 1
+      this.filter = 1
     },
     filterCompleted () {
-      return this.filter = 2
+      this.filter = 2
     },
     delCompleted () {
-      // let delList = this.list.findIndex(ele => ele.checked === true)s
+      this.list.map((ele, index) => {
+        return ele.checked === true ? index : -1
+      }).filter(index => {
+        return index >= 0
+      }).reverse().forEach(index => {
+        this.list.splice(index, 1)
+      })
     },
     del (i) {
       this.list.splice(i, 1)
