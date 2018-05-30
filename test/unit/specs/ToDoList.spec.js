@@ -182,4 +182,27 @@ describe('ToDoList.vue', () => {
         .toEqual(2)
       })  
   })
+  describe('Computed', () => {
+      it('test currentList 為未完成', () => {
+          wrapper.setData({filter:1})
+          expect(wrapper.vm.currentList).toEqual(
+            [
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'bbb'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ccc'
+                },
+            ]
+          )
+      })
+      it('test 未完成項目', () => {
+        wrapper.setData({filter:1})
+        expect(wrapper.vm.activeNum).toEqual(2)
+    })
+  })    
 })
