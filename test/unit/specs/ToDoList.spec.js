@@ -201,8 +201,26 @@ describe('ToDoList.vue', () => {
           )
       })
       it('test 未完成項目', () => {
-        wrapper.setData({filter:1})
-        expect(wrapper.vm.activeNum).toEqual(2)
+        wrapper.setData({
+            list:[
+                {
+                    checked: true,
+                    isEdit: false,
+                    content: 'aaa'
+                },
+                {
+                    checked: true,
+                    isEdit: false,
+                    content: 'bbb'
+                },
+                {
+                    checked: false,
+                    isEdit: false,
+                    content: 'ccc'
+                },
+            ]
+        })
+        expect(wrapper.vm.activeNum).toEqual(1)
     })
   })    
 })

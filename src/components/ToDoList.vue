@@ -70,7 +70,7 @@ export default {
         return this.list.filter(ele => ele.checked === true)
       }
     },
-    activeNum: function() {
+    activeNum: function () {
       return this.list.filter(ele => ele.checked === false).length
     }
   },
