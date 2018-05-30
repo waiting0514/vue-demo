@@ -20,7 +20,7 @@
       </ul>
     </section>
     <footer class="footer">
-      <span class="todo-count"><strong>0</strong> item left</span>
+      <span class="todo-count"><strong>{{activeNum}}</strong> item left</span>
       <ul class="filters">
         <li>
           <a :class="filter === 0? 'selected':''" @click="filterAll">All</a>
@@ -69,6 +69,9 @@ export default {
       } else {
         return this.list.filter(ele => ele.checked === true)
       }
+    },
+    activeNum: function() {
+      return this.list.filter(ele => ele.checked === false).length
     }
   },
   methods: {

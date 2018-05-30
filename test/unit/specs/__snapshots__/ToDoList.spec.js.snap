@@ -118,7 +118,7 @@ exports[`ToDoList.vue has the expected html structure 1`] = `
       class="todo-count"
     >
       <strong>
-        0
+        2
       </strong>
        item left
     </span>
